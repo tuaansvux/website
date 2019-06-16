@@ -1,0 +1,8 @@
+﻿@using WebSiteBanSach.Models;
+@model List<NhaXuatBan>
+<h1 style="color:red;font-weight:bold;">Nhà xuất bản</h1>
+@foreach (var item in Model)
+{
+    <div><a href="@Url.Action("SachTheoNXB", "NhaXuatBan", new { @_MaNXB=item.MaNXB})">@item.TenNXB</a></div>
+}
+<div><a href="@Url.Action("DanhMucNXB", "NhaXuatBan")">Nhà xuất bản khác..</a></div>

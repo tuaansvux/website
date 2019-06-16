@@ -1,0 +1,13 @@
+﻿@using WebSiteBanSach.Models;
+@model List<ChuDe>
+
+<hr />
+<h2 style="margin-left:2%;font-weight:normal;color:black">Danh mục chủ đề</h2>
+<hr />
+
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("SachTheoChuDe", new { @MaChuDe=item.MaChuDe})" style="width :425px;text-align:center;" class="button button-submit">@item.TenChuDe</a>
+}
+<br /><br /><a href="@Url.Action("DanhMucChuDe", "ChuDe")" style="width:100%;text-align:center;" class="button button-submit">Chủ đề khác...</a>
+

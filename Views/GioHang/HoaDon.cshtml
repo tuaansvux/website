@@ -1,0 +1,75 @@
+﻿@using WebSiteBanSach.Models;
+@model List<GioHang>
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Hóa đơn";
+    Layout = "~/Views/LayOut/NguoiDungLayout.cshtml";
+}
+<div id="divGioHang">
+    <table border="1" cellpadding="2" cellspacing="15" width="1000" height="400">
+        <tr>
+            <td id="ChuSo">Thông tin Khách hàng :</td>
+        </tr>
+        <tr>
+            <td id="ChuSo">Họ và Tên :</td>
+            <td colspan="5">@ViewBag.KhachHang.HoTen</td>
+        </tr>
+        <tr>
+            <td id="ChuSo">Địa chỉ :</td>
+            <td colspan="5">@ViewBag.KhachHang.DiaChi</td>
+        </tr>
+        <tr>
+            <td id="ChuSo">Số điện thoại :</td>
+            <td colspan="5">@ViewBag.KhachHang.DienThoai</td>
+        </tr>
+        <tr>
+            <td id="ChuSo">Email :</td>
+            <td colspan="5">@ViewBag.KhachHang.Email</td>
+        </tr>
+        <tr>
+            <td id="ChuSo">Ngày đặt :</td>
+            <td colspan="5">@DateTime.Now.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td id="ChuSo">Ngày giao :</td>
+            <td colspan="5"> @DateTime.Now.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td id="ChuSo">*************************</td>
+            <td colspan="5" style="text-align:left;color:red;font-weight:bold;">****************************************************************</td>
+        </tr>
+        <tr>
+            <td id="ChuSo">Thông tin Sản phẩm :</td>
+        </tr>
+        <tr>
+            <td>Tên sách</td>
+            <td>Ảnh bìa</td>
+            <td id="TenCot">Đơn giá</td>
+            <td id="TenCot">Số lượng</td>
+            <td id="TenCot">Thành tiền</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.sTenSach</td>
+                <td><a href="@Url.Action("XemChiTiet", "Sach", new { @iMaSach=item.iMaSach})"><img src="@Url.Content("~/HinhAnhSP/"+@item.sAnhBia)" width="100" height="150" /></a></td>
+                <td id="ChuSo">@string.Format("{0:0,0}", @item.dDonGia) vnđ</td>
+                <td id="ChuSo">@item.iSoLuong</td>
+                <td id="ChuSo">@string.Format("{0:0,0}", @item.ThanhTien) vnđ</td>
+            </tr>
+        }
+        <tr>
+            <td colspan="6" id="ChuSo">
+                Tổng tiền: @Html.Action("GioHangTongTien", "GioHang")
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" id="TenCot">
+                @using (Html.BeginForm("DatHang", "GioHang"))
+                {
+                    <input type="submit" style="background-color:green;color:white;font-size:12pt;cursor:pointer" value="Đặt hàng" />
+                }
+            </td>
+        </tr>
+    </table>
+</div>

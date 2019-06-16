@@ -1,0 +1,15 @@
+﻿<a href="@Url.Action("HienThi", "NguoiDung", new { @_MaKH = @ViewBag.KhachHang.MaKH })">
+    <i class="fa fa-user" aria-hidden="true"></i>
+    @ViewBag.KhachHang.TaiKhoan
+</a>
+@if (ViewBag.KhachHang.TaiKhoan=="Admin")
+{
+    <a href="@Url.Action("Index","QuanLysanPham")">
+        <i class="fa fa-user-secret" aria-hidden="true"></i>
+        Quản trị
+    </a>
+}
+<a href="@Url.Action("DangXuat","NguoiDung")">
+    <i class="fa fa-sign-out" aria-hidden="true"></i>
+    Đăng xuất
+</a>

@@ -1,0 +1,31 @@
+﻿@using WebSiteBanSach.Models
+@model List<Sach>
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "SachTheoChuDe";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+      <h1>@ViewBag.Sach</h1> 
+@{int i = 0;}
+@foreach (var item in Model)
+{
+    i++;
+    <div id="SanPham">
+        <a href="@Url.Action("XemChiTiet", "Sach", new { @_MaSach = item.MaSach })">
+            <div id="AnhBia"><img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="300" height="350"></div>
+        </a>
+        <div id="Gia">
+            <span id="TieuDe">Tên sách: </span>
+            <span id="TenSach">@item.TenSach</span><br />
+            <span id="TieuDe">Đơn giá : </span>
+            <span id="Gia">@string.Format("{0:0,0}", @item.GiaBan) vnđ</span>
+        </div>
+
+    </div>
+    if (i == 3)
+    {
+        i = 0;
+        <div style="clear:both"><br /></div>
+    }
+}

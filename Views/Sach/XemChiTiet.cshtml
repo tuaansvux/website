@@ -1,0 +1,32 @@
+﻿@using WebSiteBanSach.Models;
+@model Sach
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Chi tiết Sách";
+    Layout = "~/Views/LayOut/NguoiDungLayout.cshtml";
+}
+@section NoiDungBenPhai{
+    <div id="HinhAnh">
+        <img src="@Url.Content("~/HinhAnhSP/"+Model.AnhBia)" width="300" height="450">
+    </div>
+   <div id="ThongTin">
+    <div id="TenSach">@Model.TenSach</div>
+    <div id="TieuDe">Chủ đề:</div>
+    <div id="ChuDe">@ViewBag.TenChuDe</div>
+    <div id="TieuDe">Nhà xuất bản:</div>
+    <div id="NhaXuatBan">@ViewBag.TenNhaXuatBan</div>
+    <div id="TieuDe">Nội dung tóm tắt:</div>
+    <div id="MoTa">@Html.Raw(@Model.MoTa)</div>
+    <div id="Gia">
+        <span id="TieuDe">Đơn giá: </span>
+        <span id="Gia">@string.Format("{0:0,0}", @Model.GiaBan) vnđ</span>
+    </div>
+    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = Model.MaSach, @strURL = Request.Url.ToString() }))
+    {
+        <input type="submit" style="cursor:pointer" value="Mua ngay &#xf07a;" id="btnGioHang" class="btn btn-primary">
+    }
+       </div>
+    <div style="clear:both"></div>
+
+    }
+
